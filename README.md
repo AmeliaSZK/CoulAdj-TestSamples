@@ -1,13 +1,13 @@
 # CoulAdj-TestSamples
 
 This repository contains an elaborate set of images meant to be used when testing the correctness
-and performance of an implementation of CoulAdj.
+and performance of a CoulAdj implementation.
 
-These images were created because previously, the big images used to test the performance
+These images were created because previously, the big images used to test the performances
 were proprietary and couldn't be freely distributed.
 
 All samples should produce the same output, and this output should be identical, 
-line by line, to `golden.tsv`. (The line endings may differ depending on the 
+byte for byte(\*), to `golden.tsv`. (\*: The line endings may differ depending on the 
 platform where the output was produced.)
 
 
@@ -57,11 +57,10 @@ The included sizes are:
 The high quantity of sizes is meant to verify if the implementation went
 [quadratic](https://en.wikipedia.org/wiki/Time_complexity#Sub-quadratic_time) 
 in languages with a slow execution time.
+(Our best Power Query implementation to date takes a whooping 8 minutes. 
+And yes, this is with a sub-quadratic implementation.)
 
-> Our best Power Query implementation to date takes a whooping 8 minutes. 
-> And yes, this is with a sub-quadratic implementation.
-
-Each size has 4 times the amount of pixels in the previous size.
+> Each size has 4 times the amount of pixels than the previous size.
 
 
 
@@ -139,7 +138,7 @@ Now, you can tell to which channel a value belongs by looking at the tens digit 
 the value. If it's 1 (10 or 210), then red. 2 is green, 3 is blue, and 4 & 5 are alpha.
 
 This is the same order the columns should be appearing in the output, and also the
-same order that must be used when comparing the colours to sort them.
+same order that must be used when comparing the colours to sort the rows.
 
 ## Quick identification of what colour a pixel should be.
 
@@ -166,7 +165,7 @@ output had been sorted, then we only need to check the `a` column is also sorted
 
 However, we didn't want this encoding to have an impact on the sorting itself,
 so the IDs were chosen so that the alpha column should always be sorted from 
-greater to lower value. This way, if the alpha was ever used to sort 2 colours,
+greater to lower value. This way, if the alpha was ever used to sort two colours,
 it would be visible in the ouput.
 
 ## A sort was actually performed
@@ -184,11 +183,11 @@ result, because it would interfere with the expected ordering of the alpha colum
 > Magenta was thus given `244` alpha value, and assigned to be the second
 > colour to encounter when the main loop gets to `(row 0, col 5)`.
 >
-> A sort by order of insertion would then produce and output like this:
+> A sort by order of insertion would then produce this (non-conformant) output:
 > * `(210,220, 30,242)`
 > * `(210, 20,230,244)`
 
-# Troubleshooting
+# Troubleshooting FAQ
 
 ## There are too many rows in the output
 You are probably looping around, with the top row thinking it's adjacent to the
@@ -205,7 +204,8 @@ This [happened](https://github.com/AmeliaSZK/CoulAdj-JS/commit/33853ef21b3e6fa1d
 Are you sure the colours are compared correctly? Some libraries use ARGB under
 the hood instead of RGBA, and you'll need to specify a custom compare function.
 
-This happened during the Qt implementation, because we were using [QRgb](https://doc.qt.io/qt-5/qcolor.html#QRgb-typedef).
+This happened during the Qt implementation, because [QRgb](https://doc.qt.io/qt-5/qcolor.html#QRgb-typedef)
+is an unsigned integer formatted as `#AARRGGBB`
 
 
 ## My output is the same as `golden.tsv`, but git diff says the files are different?!
@@ -218,12 +218,12 @@ required by the [TSV specification](https://www.iana.org/assignments/media-types
     >record   ::= field [TAB field]+ EOL
 
 1. Your output was produced on Windows with a CRLF line ending, and you are comparing
-with a `golden.tsv` that has an LF (Linux/Mac) line ending. This is not a problem;
+with a `golden.tsv` that has an LF (Linux/Mac) line ending. This is not a problem with your implementation;
 feel free to compare with a `golden.tsv` converted to CRLF line endings, or use
 any other workaround.
 
 
-## I'm accessing out-of-bounds indexes
+## I am crashing due to out-of-bounds indexes
 Verify that you didn't mix up width and height, row and column, X and Y.
 
 Libraries usually have (0,0) in the top left corner, but wether X grows to
@@ -234,7 +234,7 @@ will be on (x=2, y=1).
 |     | 0 | 1 | 2 |
 |-----|---|---|---|
 |**0**|   |   |   |
-|**1**|   |   | 🙃 |
+|**1**|   |   | 🤡 |
 |**2**|   |   |   |
 
 > This problem is a danger in every implementation, and it is the reason why we create variables
