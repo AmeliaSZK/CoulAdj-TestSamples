@@ -234,7 +234,7 @@ will be on (x=2, y=1).
 |     | 0 | 1 | 2 |
 |-----|---|---|---|
 |**0**|   |   |   |
-|**1**|   |   | 🤡 |
+|**1**|   |   | 🎉 |
 |**2**|   |   |   |
 
 > This problem is a danger in every implementation, and it is the reason why we create variables
