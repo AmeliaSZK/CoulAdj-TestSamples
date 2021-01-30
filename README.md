@@ -1,7 +1,7 @@
 # CoulAdj-TestSamples
 
-This repository contains elaborate images meant to be used to test the correctness
-of an implementation of CoulAdj.
+This repository contains elaborate images meant to be used when testing the correctness
+and performance of an implementation of CoulAdj.
 
 These images were created because previously, the images used to test the performance
 were proprietary and couldn't be freely distributed.
@@ -9,19 +9,6 @@ were proprietary and couldn't be freely distributed.
 All samples should produce the same output, and this output should be identical, 
 line by line, to `golden.tsv`. (The line endings may differ depending on the 
 platform where the output was produced.)
-
-# Preview
-
-The sample of size 1 looks like the image below. This preview is 32 times
-bigger than the actual sample.
-
-![sample-preview](sample-preview.png)
-
-Actual size: ![sample-1](sample-size-1.png)
-
-NB: In all samples, the top-right cell was made to always be 1 by 1 pixel.
-This is why you can hardly see the red in the top-right when looking at the bigger
-samples.
 
 # Sizes
 In the preview, you can see that the colours are assigned by squares. We will
@@ -52,46 +39,62 @@ More exhaustively:
 | 1024 |  9216 |   8192 | 75,497,472 |
 
 
-The high amount of sizes is meant to verify if the implementation went
+The high quantity of sizes is meant to verify if the implementation went
 [quadratic](https://en.wikipedia.org/wiki/Time_complexity#Sub-quadratic_time) 
-in languages with a slow execution time. (Our best Power Query implementation to date
-takes a whooping 8 minutes. And yes, this is sub-quadratic.)
+in languages with a slow execution time.
 
-If a size takes more than about 4 times then what the previous size took to
-complete, the implementation is likely of quadratic complexity or worse.
+> Our best Power Query implementation to date takes a whooping 8 minutes. 
+> And yes, this is with a sub-quadratic implementation.
+
+Each size has 4 times the amount of pixels in the previous size.
+
+
 
 # Correct results
-The correct results, _with additional columns to name the colours_, 
-for all samples is this:
+The correct results, for all samples, _with additional columns to name the colours_, 
+are:
 
-|   r |   g |   b |   a | adj_r | adj_g | adj_b | adj_a | Colour  | adj_Colour |
-|----:|----:|----:|----:|------:|------:|------:|------:|---------|------------|
-|  10 |  20 | 230 | 252 |    10 |   220 |    30 |   250 | Blue    | Green      |
-|  10 |  20 | 230 | 252 |    10 |   220 |   230 |   248 | Blue    | Cyan       |
-|  10 |  20 | 230 | 252 |   210 |    20 |    30 |   246 | Blue    | Red        |
-|  10 |  20 | 230 | 252 |   210 |    20 |   230 |   244 | Blue    | Magenta    |
-|  10 |  20 | 230 | 252 |   210 |   220 |    30 |   242 | Blue    | Yellow     |
-|  10 | 220 |  30 | 250 |    10 |    20 |   230 |   252 | Green   | Blue       |
-|  10 | 220 |  30 | 250 |    10 |   220 |   230 |   248 | Green   | Cyan       |
-|  10 | 220 |  30 | 250 |   210 |    20 |    30 |   246 | Green   | Red        |
-|  10 | 220 |  30 | 250 |   210 |   220 |    30 |   242 | Green   | Yellow     |
-|  10 | 220 | 230 | 248 |    10 |    20 |   230 |   252 | Cyan    | Blue       |
-|  10 | 220 | 230 | 248 |    10 |   220 |    30 |   250 | Cyan    | Green      |
-|  10 | 220 | 230 | 248 |   210 |    20 |   230 |   244 | Cyan    | Magenta    |
-|  10 | 220 | 230 | 248 |   210 |   220 |    30 |   242 | Cyan    | Yellow     |
-| 210 |  20 |  30 | 246 |    10 |    20 |   230 |   252 | Red     | Blue       |
-| 210 |  20 |  30 | 246 |    10 |   220 |    30 |   250 | Red     | Green      |
-| 210 |  20 |  30 | 246 |   210 |    20 |   230 |   244 | Red     | Magenta    |
-| 210 |  20 | 230 | 244 |    10 |    20 |   230 |   252 | Magenta | Blue       |
-| 210 |  20 | 230 | 244 |    10 |   220 |   230 |   248 | Magenta | Cyan       |
-| 210 |  20 | 230 | 244 |   210 |    20 |    30 |   246 | Magenta | Red        |
-| 210 |  20 | 230 | 244 |   210 |   220 |    30 |   242 | Magenta | Yellow     |
-| 210 | 220 |  30 | 242 |    10 |    20 |   230 |   252 | Yellow  | Blue       |
-| 210 | 220 |  30 | 242 |    10 |   220 |    30 |   250 | Yellow  | Green      |
-| 210 | 220 |  30 | 242 |    10 |   220 |   230 |   248 | Yellow  | Cyan       |
-| 210 | 220 |  30 | 242 |   210 |    20 |   230 |   244 | Yellow  | Magenta    |
+|   r |   g |   b |   a | adj_r | adj_g | adj_b | adj_a | _Colour_  | _adj_Colour_ |
+|----:|----:|----:|----:|------:|------:|------:|------:|-----------|--------------|
+|  10 |  20 | 230 | 252 |    10 |   220 |    30 |   250 | _Blue_    | _Green_      |
+|  10 |  20 | 230 | 252 |    10 |   220 |   230 |   248 | _Blue_    | _Cyan_       |
+|  10 |  20 | 230 | 252 |   210 |    20 |    30 |   246 | _Blue_    | _Red_        |
+|  10 |  20 | 230 | 252 |   210 |    20 |   230 |   244 | _Blue_    | _Magenta_    |
+|  10 |  20 | 230 | 252 |   210 |   220 |    30 |   242 | _Blue_    | _Yellow_     |
+|  10 | 220 |  30 | 250 |    10 |    20 |   230 |   252 | _Green_   | _Blue_       |
+|  10 | 220 |  30 | 250 |    10 |   220 |   230 |   248 | _Green_   | _Cyan_       |
+|  10 | 220 |  30 | 250 |   210 |    20 |    30 |   246 | _Green_   | _Red_        |
+|  10 | 220 |  30 | 250 |   210 |   220 |    30 |   242 | _Green_   | _Yellow_     |
+|  10 | 220 | 230 | 248 |    10 |    20 |   230 |   252 | _Cyan_    | _Blue_       |
+|  10 | 220 | 230 | 248 |    10 |   220 |    30 |   250 | _Cyan_    | _Green_      |
+|  10 | 220 | 230 | 248 |   210 |    20 |   230 |   244 | _Cyan_    | _Magenta_    |
+|  10 | 220 | 230 | 248 |   210 |   220 |    30 |   242 | _Cyan_    | _Yellow_     |
+| 210 |  20 |  30 | 246 |    10 |    20 |   230 |   252 | _Red_     | _Blue_       |
+| 210 |  20 |  30 | 246 |    10 |   220 |    30 |   250 | _Red_     | _Green_      |
+| 210 |  20 |  30 | 246 |   210 |    20 |   230 |   244 | _Red_     | _Magenta_    |
+| 210 |  20 | 230 | 244 |    10 |    20 |   230 |   252 | _Magenta_ | _Blue_       |
+| 210 |  20 | 230 | 244 |    10 |   220 |   230 |   248 | _Magenta_ | _Cyan_       |
+| 210 |  20 | 230 | 244 |   210 |    20 |    30 |   246 | _Magenta_ | _Red_        |
+| 210 |  20 | 230 | 244 |   210 |   220 |    30 |   242 | _Magenta_ | _Yellow_     |
+| 210 | 220 |  30 | 242 |    10 |    20 |   230 |   252 | _Yellow_  | _Blue_       |
+| 210 | 220 |  30 | 242 |    10 |   220 |    30 |   250 | _Yellow_  | _Green_      |
+| 210 | 220 |  30 | 242 |    10 |   220 |   230 |   248 | _Yellow_  | _Cyan_       |
+| 210 | 220 |  30 | 242 |   210 |    20 |   230 |   244 | _Yellow_  | _Magenta_    |
 
 
+
+# Preview
+
+The sample of size 1 looks like the image below. This preview is 32 times
+bigger than the actual sample.
+
+![sample-preview](./doc/sample-preview.png)
+
+Actual size: ![sample-1](sample-size-1.png)
+
+NB: In all samples, the top-right cell was made to always be 1 by 1 pixel.
+This is why you can hardly see the red in the top-right when looking at the bigger
+samples.
 
 
 
@@ -115,6 +118,13 @@ Additionally, the alpha value must represent a unique RGB combination.
     | 210 | 220 |  30 | 242 | Yellow  | 42 |  d2     |  dc     |  1e     |  f2     |
 1. When looking at the image from top-left to top-right, from top to bottom,
 the colours must appear such that those with the lower alpha values appear first.
+
+# Rules of thumb
+
+When looking at the output...
+* In each row, the digit of the tens should always be increasing from left column to right column.
+* In the first alpha column (`a`), each row should have a value greater or equal than the row below.
+* In the second alpha column (`adj_a`), the above should be true when grouping rows by `a` value.
 
 
 # Rationales
@@ -167,9 +177,73 @@ that the output was actually sorted and isn't depending on the insertion order,
 the images are made so that the insertion order would give an obviously incorrect
 result, because it would interfere with the expected ordering of the alpha column.
 
-# Rules of thumb
+> For example, Yellow with `(210,220,30)` will be sorted last. Because it will
+> be last, it was given the `242` alpha value, the lowest, and was made to be
+> first color encountered at pixel `(row 0, col 0)`.
+>
+> The second-to-last colour in the sort is Magenta with `(210,20,230)`. 
+> Magenta was thus given `244` alpha value, and assigned to be the second
+> colour to encounter when the main loop gets to `(row 0, col 5)`.
+>
+> A sort by order of insertion would then produce and output like this:
+> * `(210,220, 30,242)`
+> * `(210, 20,230,244)`
 
-When looking at the output...
-* In each row, the digit of the tens should always be increasing from left column to right column.
-* In the first alpha column (`a`), each row should have a value greater or equal than the row below.
-* In the second alpha column (`adj_a`), the above should be true when grouping rows by `a` value.
+# Troubleshooting
+
+## There are too many rows in the output
+You are probably looping around, with the top row thinking it's adjacent to the
+bottom row, and likewise for left vs right columns.
+
+When checking the validity of neighbour coordinates, do you check that 
+`neighRow` and `neighCol` are both greater or equal to `0`? If you don't, you will be
+accessing negative indexes, and some language treat index `-1` as "first item from the end".
+
+This [happened](https://github.com/AmeliaSZK/CoulAdj-JS/commit/33853ef21b3e6fa1d6730f2f72020fe25e07610d) in the JavaScript implementation.
+
+
+## The first alpha column (`a`) is sorted in ascending order
+Are you sure the colours are compared correctly? Some libraries use ARGB under
+the hood instead of RGBA, and you'll need to specify a custom compare function.
+
+This happened during the Qt implementation, because we were using [QRgb](https://doc.qt.io/qt-5/qcolor.html#QRgb-typedef).
+
+
+## My output is the same as `golden.tsv`, but git diff says the files are different?!
+Two (known) possibilities:
+
+1. You joined the lines with a newline character instead of appending a newline
+character at the end of each line. If your output doesn't end with a blank line,
+you have this problem. The terminal newline is essential because it is
+required by the [TSV specification](https://www.iana.org/assignments/media-types/text/tab-separated-values):
+    >record   ::= field [TAB field]+ EOL
+
+1. Your output was produced on Windows with a CRLF line ending, and you are comparing
+with a `golden.tsv` that has an LF (Linux/Mac) line ending. This is not a problem;
+feel free to compare with a `golden.tsv` converted to CRLF line endings, or use
+any other workaround.
+
+
+## I'm accessing out-of-bounds indexes
+Verify that you didn't mix up width and height, row and column, X and Y.
+
+Libraries usually have (0,0) in the top left corner, but wether X grows to
+the right or to the bottom can diverge. Furthermore, some longstanding conventions
+are in opposition. For example, in a cartesian plan, the cell at (row 1, col 2)
+will be on (x=2, y=1).
+
+|     | 0 | 1 | 2 |
+|-----|---|---|---|
+|**0**|   |   |   |
+|**1**|   |   | 🙃 |
+|**2**|   |   |   |
+
+> This problem is a danger in every implementation, and it is the reason why we create variables
+> such as `maxRow` and `nbRows` instead of using `height-1` and `height`.
+
+## I'm getting weird variations in the colours, like `(10,219,31,250)` for Green
+The library function that imports the file is probably (*probably*) doing some color management 
+shenanigans behind the scene.
+
+At the time of writing these lines, it is an [open issue](https://github.com/AmeliaSZK/CoulAdj-JS/issues/2) 
+in the JavaScript implementation.
