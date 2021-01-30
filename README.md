@@ -1,6 +1,6 @@
 # CoulAdj-TestSamples
 
-This repository contains elaborate images meant to be used when testing the correctness
+This repository contains an elaborate set of images meant to be used when testing the correctness
 and performance of an implementation of CoulAdj.
 
 These images were created because previously, the big images used to test the performance
