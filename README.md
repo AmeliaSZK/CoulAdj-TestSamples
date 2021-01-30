@@ -3,26 +3,41 @@
 This repository contains elaborate images meant to be used when testing the correctness
 and performance of an implementation of CoulAdj.
 
-These images were created because previously, the images used to test the performance
+These images were created because previously, the big images used to test the performance
 were proprietary and couldn't be freely distributed.
 
 All samples should produce the same output, and this output should be identical, 
 line by line, to `golden.tsv`. (The line endings may differ depending on the 
 platform where the output was produced.)
 
+
+# Preview
+
+The sample of size 1 looks like the image below. This preview is 32 times
+bigger than the actual sample.
+
+![sample-preview](./doc/sample-preview.png)
+
+Actual size: ![sample-1](sample-size-1.png)
+
+NB: In all samples, the top-right cell was made to always be 1 by 1 pixel.
+This is why you can hardly see the red in the top-right when looking at the bigger
+samples.
+
+
 # Sizes
 In the preview, you can see that the colours are assigned by squares. We will
 call these squares "cells".
 
-The "size" of a sample is the length of a cell in pixels. Since the sample
-is a grid of 9 by 8 cells, the sample of size 1 is 9 by 8 pixels. The
+The **size** of a sample is the **length of a cell in pixels**. Since the sample
+is a grid of 9 by 8 cells, the sample of size 1 is 9 by 8 pixels, the
 sample of size 2 is 18 by 16 pixels, etc etc...
 
 The size closest to the intended real-world use-case is 512, with ~18M pixels.
 As such, execution time at size 512 is the "canonical" metric, 
 and it should be used when comparing different implementations.
 
-More exhaustively:
+The included sizes are:
 
 | Size | Width | Height |  Nb Pixels | Canonical? |
 |-----:|------:|-------:|-----------:|:----------:|
@@ -82,25 +97,9 @@ are:
 | 210 | 220 |  30 | 242 |   210 |    20 |   230 |   244 | _Yellow_  | _Magenta_    |
 
 
-
-# Preview
-
-The sample of size 1 looks like the image below. This preview is 32 times
-bigger than the actual sample.
-
-![sample-preview](./doc/sample-preview.png)
-
-Actual size: ![sample-1](sample-size-1.png)
-
-NB: In all samples, the top-right cell was made to always be 1 by 1 pixel.
-This is why you can hardly see the red in the top-right when looking at the bigger
-samples.
-
-
-
 # Rules
 
-Each test samples obey these rules:
+All test samples obey these rules:
 1. Width and height are different.
 1. Values in the red channel must be either 10 or 210
 1. Values in the green channel must be either 20 or 220
