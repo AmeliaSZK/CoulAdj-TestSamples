@@ -51,7 +51,6 @@ The included sizes are:
 |  128 |  1152 |   1024 |  1,179,648 |
 |  256 |  2304 |   2048 |  4,718,592 |
 |  **512** |  **4608** |   **4096** | **18,874,368** | Yes |
-| 1024 |  9216 |   8192 | 75,497,472 |
 
 
 The high quantity of sizes is meant to verify if the implementation went
