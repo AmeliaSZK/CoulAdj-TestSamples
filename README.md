@@ -20,7 +20,7 @@ bigger than the actual sample.
 
 Actual size: ![sample-1](sample-size-1.png)
 
-NB: In all samples, the top-right cell was made to always be 1 by 1 pixel.
+NB: In all samples, the top-right red square was made to always be 1 by 1 pixel.
 This is why you can hardly see the red in the top-right when looking at the bigger
 samples.
 
