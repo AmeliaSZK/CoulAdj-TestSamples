@@ -10,6 +10,39 @@ All samples should produce the same output, and this output should be identical,
 byte for byte(\*), to `golden.tsv`. (\*: The line endings may differ depending on the 
 platform where the output was produced.)
 
+## Prolog Support
+10 months after its inital creation, this repository was updated to
+include sample data adapted for the Prolog implementation.
+
+The Prolog language has many particularities, one of them being that it's not
+meant to take image files in input, but instead text files that describe 
+"facts". Hence, we decided that for CoulAdj-Prolog, another language would be
+used to take the image file in input, create a text file with the pixel values,
+and pass that text file in input to the Prolog program.
+
+The problem is that the goal of these test samples is to have them 
+human-verifiable. This can be trivially done by sighted humans who can look
+at the enlarged preview available in this Readme. However, the canonical
+input to the Prolog program is a text file. And the smallest size in the regular
+samples has 72 pixels, meaning 72 rows of text.
+
+72 rows of text is too much for manual verification, especially since a lot of
+rows and columns are duplicates.
+
+Hence, the Prolog samples is an image of 5 by 6, for a total of 30 pixels, or
+30 rows of text. There is still a duplicate row in this sample, so we could
+have reduced the sample to 5 by 5, for 25 pixels, but then we would have an
+equal amount of rows and columns, and we decided that 5 rows of text was
+an acceptable cost to keep a different number of rows and columns.
+
+The Prolog sample is meant to have the same adjacencies, and surface the same
+bugs, as the regular samples.
+
+This Readme has been fully reviewed to make sure that all the
+information is correct and up-to-date. Note that we only mention the Prolog
+sample when it differs, so any reference to "all" samples 
+includes the Prolog sample.
+
 
 # Preview
 
@@ -24,14 +57,22 @@ NB: In all samples, the top-right red square was made to always be 1 by 1 pixel.
 This is why you can hardly see the red in the top-right when looking at the bigger
 samples.
 
+## Prolog
+The Prolog sample looks like the image below. This preview is 32 times
+bigger than the actual sample.
+
+![sample-preview-prolog](./doc/sample-preview-prolog.png)
+
+Actual size: ![sample-p](sample-size-p.png)
 
 # Sizes
 In the preview, you can see that the colours are assigned by squares. We will
 call these squares "cells".
 
-The **size** of a sample is the **length of a cell in pixels**. Since the sample
+The **size** of a (non-Prolog) sample is the **length of a cell in pixels**. Since the sample
 is a grid of 9 by 8 cells, the sample of size 1 is 9 by 8 pixels, the
-sample of size 2 is 18 by 16 pixels, etc etc...
+sample of size 2 is 18 by 16 pixels, etc etc... The Prolog sample is an
+exception, hence it is of size `p`. ("p" for "Prolog")
 
 The size closest to the intended real-world use-case is 512, with ~18M pixels.
 As such, execution time at size 512 is the "canonical" metric, 
@@ -39,8 +80,9 @@ and it should be used when comparing different implementations.
 
 The included sizes are:
 
-| Size | Width | Height |  Nb Pixels | Canonical? |
+| Size | Width | Height |  Nb Pixels | Notes |
 |-----:|------:|-------:|-----------:|:----------:|
+|    p |     5 |      6 |         30 | Prolog sample |
 |    1 |     9 |      8 |         72 |
 |    2 |    18 |     16 |        288 |
 |    4 |    36 |     32 |      1,152 |
@@ -50,22 +92,23 @@ The included sizes are:
 |   64 |   576 |    512 |    294,912 |
 |  128 |  1152 |   1024 |  1,179,648 |
 |  256 |  2304 |   2048 |  4,718,592 |
-|  **512** |  **4608** |   **4096** | **18,874,368** | Yes |
+|  **512** |  **4608** |   **4096** | **18,874,368** | **Canonical** |
 
 
 The high quantity of sizes is meant to verify if the implementation went
 [quadratic](https://en.wikipedia.org/wiki/Time_complexity#Sub-quadratic_time) 
 in languages with a slow execution time.
-(Our best Power Query implementation to date takes a whooping 8 minutes. 
-And yes, this is with a sub-quadratic implementation.)
+~~(Our best Power Query implementation to date takes a whooping 8 minutes. 
+And yes, this is with a sub-quadratic implementation.)~~
+(Our Power Query implementation is now under 30 seconds!! 😁)
 
-> Each size has 4 times the amount of pixels than the previous size.
+> Each (non-Prolog) size has 4 times the amount of pixels than the previous size.
 
 
 
 # Correct results
-The correct results, for all samples, _with additional columns to name the colours_, 
-are:
+The correct results, for all samples, 
+_with additional columns to name the colours_, are:
 
 |   r |   g |   b |   a | adj_r | adj_g | adj_b | adj_a | _Colour_  | _adj_Colour_ |
 |----:|----:|----:|----:|------:|------:|------:|------:|-----------|--------------|
@@ -113,7 +156,7 @@ Additionally, the alpha value must represent a unique RGB combination.
     | 210 |  20 |  30 | 246 | Red     | 46 |  d2     |  14     |  1e     |  f6     |
     | 210 |  20 | 230 | 244 | Magenta | 44 |  d2     |  14     |  e6     |  f4     |
     | 210 | 220 |  30 | 242 | Yellow  | 42 |  d2     |  dc     |  1e     |  f2     |
-1. When looking at the image from top-left to top-right, from top to bottom,
+1. When looking at the image from top-left to top-right, and then from top to bottom,
 the colours must appear such that those with the lower alpha values appear first.
 
 # Rules of thumb
@@ -180,7 +223,7 @@ result, because it would interfere with the expected ordering of the alpha colum
 >
 > The second-to-last colour in the sort is Magenta with `(210,20,230)`. 
 > Magenta was thus given `244` alpha value, and assigned to be the second
-> colour to encounter when the main loop gets to `(row 0, col 5)`.
+> colour to encounter when the main loop gets to `(row 0, col 5)` in the size 1 sample.
 >
 > A sort by order of insertion would then produce this (non-conformant) output:
 > * `(210,220, 30,242)`
