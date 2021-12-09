@@ -10,6 +10,19 @@ All samples should produce the same output, and this output should be identical,
 byte for byte(\*), to `golden.tsv`. (\*: The line endings may differ depending on the 
 platform where the output was produced.)
 
+## Archive files
+
+**Warning: Archives were compressed for a reason.**
+
+This table lists the approximate size that an archive will take once
+it is uncompressed:
+
+| Archive File | Uncompressed Size |
+|--------------|-------------------|
+| `bmp-samples.zip` | 100 MB |
+| `prolog-pixels-sizes-32-to-256.7z` | 200 MB |
+| `prolog-pixels-size-512.7z` | 600 MB |
+
 ## Prolog Support
 10 months after its inital creation, this repository was updated to
 include sample data adapted for the Prolog implementation.
