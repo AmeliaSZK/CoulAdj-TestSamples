@@ -76,7 +76,7 @@ bigger than the actual sample.
 
 ![sample-preview-prolog](./doc/sample-preview-prolog.png)
 
-Actual size: ![sample-p](sample-size-p.png)
+Actual size: ![sample-p](./prolog/sample-size-p.png)
 
 # Sizes
 In the preview, you can see that the colours are assigned by squares. We will
